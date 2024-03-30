@@ -273,7 +273,7 @@ const OwlCarousel = dynamic(() => import('react-owl-carousel'), {
   
 
   
-export default function HomePage() {
+export default function ProductsPage() {
     const router = useRouter()
     const [windows,setwindows] = useState<any>(null);
 	const [open, setOpen] = React.useState(false);
@@ -312,8 +312,7 @@ export default function HomePage() {
           <a href="#" class="logo"></a>
           <div class="menu">
             <menu>
-			
-            <MenuItem onClick={()=>{
+			<MenuItem onClick={()=>{
                 router.push('/pages/home')
               }}>Home1</MenuItem>
               <MenuItem onClick={()=>{

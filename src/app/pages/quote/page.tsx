@@ -273,7 +273,7 @@ const OwlCarousel = dynamic(() => import('react-owl-carousel'), {
   
 
   
-export default function HomePage() {
+export default function QuotePage() {
     const router = useRouter()
     const [windows,setwindows] = useState<any>(null);
 	const [open, setOpen] = React.useState(false);
