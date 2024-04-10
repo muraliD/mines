@@ -1,0 +1,22 @@
+{
+  "/_not-found": "app/_not-found.js",
+  "/pages/about/page": "app/pages/about/page.js",
+  "/pages/aboutadmin/page": "app/pages/aboutadmin/page.js",
+  "/page": "app/page.js",
+  "/pages/admin/page": "app/pages/admin/page.js",
+  "/pages/base/page": "app/pages/base/page.js",
+  "/pages/careers/page": "app/pages/careers/page.js",
+  "/pages/contact/page": "app/pages/contact/page.js",
+  "/pages/equipmentadmin/page": "app/pages/equipmentadmin/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/pages/gallery/page": "app/pages/gallery/page.js",
+  "/pages/homeadmin/page": "app/pages/homeadmin/page.js",
+  "/pages/machinery/page": "app/pages/machinery/page.js",
+  "/pages/home/page": "app/pages/home/page.js",
+  "/pages/productivityadmin/page": "app/pages/productivityadmin/page.js",
+  "/pages/galleryadmin/page": "app/pages/galleryadmin/page.js",
+  "/pages/productivity/page": "app/pages/productivity/page.js",
+  "/pages/products/page": "app/pages/products/page.js",
+  "/pages/quote/page": "app/pages/quote/page.js",
+  "/pages/productsadmin/page": "app/pages/productsadmin/page.js"
+}
