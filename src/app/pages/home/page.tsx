@@ -289,7 +289,7 @@ export default function HomePage() {
 			
             <MenuItem onClick={()=>{
                 router.push('/pages/home')
-              }} className='active'>Home</MenuItem>
+              }} className='active'>Home1</MenuItem>
               <MenuItem onClick={()=>{
                 router.push('/pages/about')
               }} >About</MenuItem>
