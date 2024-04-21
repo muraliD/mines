@@ -3,6 +3,12 @@ import React,{useEffect, useState} from 'react';
 import $ from 'jquery';
 import Image from 'next/image';
 
+import { AppDispatch,RootState } from '../../redux/store';
+
+import { useDispatch, useSelector } from "react-redux";
+
+import { getDashBoardData } from '../../redux/features/jobs/jobsSlice';
+
 import location1 from '../../../../public/images/dummy.jpg';
 import location2 from '../../../../public/images/dummy.jpg';
 import location3 from '../../../../public/images/dummy.jpg';
@@ -27,21 +33,6 @@ import { CardActions, CardMedia, Grid, ListItem, Menu, MenuItem, TextareaAutosiz
 //import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 
 
-import InputLabel from '@mui/material/InputLabel';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-
-import Stack from '@mui/material/Stack';
-import Checkbox from '@mui/material/Checkbox';
-import FormGroup from '@mui/material/FormGroup';
-import Modal from '@mui/material/Modal';
-
-
-import Accordion from '@mui/material/Accordion';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import AccordionSummary from '@mui/material/AccordionSummary';
-//import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 
 
@@ -152,93 +143,9 @@ const OwlCarousel = dynamic(() => import('react-owl-carousel'), {
     }
   };
 
-  const Gallery1 = dynamic(() => import('react-owl-carousel'), {
-	ssr: false,
-  });
+ 
   
-  const optionsGal1 = {
-	loop:true,
-	autoPlay :true,
-    margin:14,
-	padding:5,
-	nav:true,
-	items:4,
-    responsiveClass:true,
-	responsive:{
-        0:{
-            items:1,
-            nav:true
-        },
-        600:{
-            items:2,
-            nav:true
-        },
-        1200:{
-            items:4,
-            nav:true,
-            loop:false
-        }
-    }
-  };
-
-
-  const Gallery2 = dynamic(() => import('react-owl-carousel'), {
-	ssr: false,
-  });
-  
-  const optionsGal2 = {
-	loop:true,
-	autoPlay :true,
-    margin:14,
-	padding:5,
-	nav:true,
-	items:4,
-    responsiveClass:true,
-	responsive:{
-        0:{
-            items:1,
-            nav:true
-        },
-        600:{
-            items:2,
-            nav:true
-        },
-        1200:{
-            items:4,
-            nav:true,
-            loop:false
-        }
-    }
-  };
-
-  const Gallery3 = dynamic(() => import('react-owl-carousel'), {
-	ssr: false,
-  });
-  
-  const optionsGal3 = {
-	loop:true,
-	autoPlay :true,
-    margin:14,
-	padding:5,
-	nav:true,
-	items:4,
-    responsiveClass:true,
-	responsive:{
-        0:{
-            items:1,
-            nav:true
-        },
-        600:{
-            items:2,
-            nav:true
-        },
-        1200:{
-            items:4,
-            nav:true,
-            loop:false
-        }
-    }
-  };
+ 
 
 
 
@@ -248,11 +155,14 @@ const OwlCarousel = dynamic(() => import('react-owl-carousel'), {
 
   
 export default function HomePage() {
+	const dispatch = useDispatch<AppDispatch>();
     const router = useRouter()
     const [windows,setwindows] = useState<any>(null);
 	const [open, setOpen] = React.useState(false);
   	const handleOpen = () => setOpen(true);
   	const handleClose = () => setOpen(false);
+	  const { dashBoardData, dashBoadLoading } = useSelector((state: RootState) => state.jobsReducer);
+	
 
 
 	  const [expanded, setExpanded] = React.useState<string | false>(false);
@@ -268,6 +178,7 @@ export default function HomePage() {
     useEffect(() => {
         if (typeof window !== 'undefined') {
             setwindows(window);
+			dispatch(getDashBoardData({}));
             // window.$ = window.jQuery = $
         }
       }, [typeof window ]);
