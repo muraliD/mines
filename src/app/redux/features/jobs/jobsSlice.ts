@@ -7,6 +7,9 @@ const initialState: any = {
   dashBoardData: null,
 
   dashBoadLoading: false,
+
+  dashBoadUpdateLoading: false
+
   
  
 };
@@ -22,6 +25,22 @@ export const getDashBoardData = createAsyncThunk(
     return API.post(url, {}, null, null);
   }
 );
+
+export const updateDashBoardData = createAsyncThunk(
+  "jobs/updateDashBoardData",
+  async (data: any, thunkAPI) => {
+    // data = {"dateFrom":"2024-02-09T18:30:00.000Z","jobType":"all"}
+    let url = encodeURI(App.services.updateDashboard);
+    return API.post(url, data, null, null);
+  }
+);
+
+export const uploadMatterFiles = createAsyncThunk('cmrecon/uploadMatterFiles', async (data:any, thunkAPI) => {
+
+  let url = encodeURI(App.services.fileupload);
+  return API.post(url, data, null, null);
+
+})
 
 /*Slice Of the Jobs*/
 export const jobs = createSlice({
@@ -48,6 +67,7 @@ export const jobs = createSlice({
         state.dashBoadLoading = false;
         throw new Error(action.error.message);
       })
+     
       
   },
 });

@@ -3,6 +3,8 @@ export const App = {
 
   services: {
     dashboard: "/api/getdashboardData",
+    updateDashboard: "/api/getdashboardData",
+    fileupload: "/api/createMedia",
     clients: "/api/clients",
     jobs: "/salvoeBridge/api/r1/getstatusData",
     jobsCount: "/salvoeBridge/api/r1/getjobCounts",
