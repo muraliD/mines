@@ -1,1 +1,0 @@
-self.__REACT_LOADABLE_MANIFEST="{\"..\\\\app\\\\pages\\\\home\\\\page.tsx -> react-owl-carousel\":{\"id\":\"..\\\\app\\\\pages\\\\home\\\\page.tsx -> react-owl-carousel\",\"files\":[\"static/chunks/_app-pages-browser_node_modules_react-owl-carousel_umd_OwlCarousel_js.js\"]}}"

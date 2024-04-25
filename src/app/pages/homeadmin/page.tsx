@@ -7,8 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { uploadMatterFiles } from '../../redux/features/jobs/jobsSlice';
 
 import { Formik, Field, Form, ErrorMessage, FieldArray } from "formik";
-import JoditEditor from "jodit-react";
-import { Editor } from 'react-draft-wysiwyg';
+
+
 import '../../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
 
 import * as Yup from "yup";
@@ -171,9 +171,7 @@ export default function HomeAdminpage() {
 							text3: Yup.string().required("text3 required"),
 							text4: Yup.string().required("text4 required"),
 							images: Yup.array().of(
-								Yup.object().shape({
-									file: Yup.mixed()
-								})
+								Yup.mixed()
 							)
 						}),
 						// title1: Yup.object().shape({
@@ -215,12 +213,12 @@ export default function HomeAdminpage() {
 						// 		content: Yup.string().required("content required"),
 						// 	})
 						// ),
-						// partnerImages:Yup.array().of(
-						// 		Yup.object().shape({
-						// 			image: Yup.mixed()
+						partnerImages:Yup.array().of(
+								Yup.object().shape({
+									image: Yup.mixed()
 
-						// 		})
-						// 	)
+								})
+							)
 						
 
 					})}
@@ -321,6 +319,7 @@ export default function HomeAdminpage() {
 																	<TextField
 
 																		type="file"
+																		key={index}
 
 																		name={`banners.images.${index}`}
 																		value={values.banners["images"][index] || ""}
@@ -755,7 +754,7 @@ export default function HomeAdminpage() {
 												return (
 													<>
 														{filespath && filespath.length > 0 && filespath.map((user, index) => {
-															return <>       <Unstable_Grid2 md={4} sm={6} xs={12} columnSpacing={2} spacing={2} >
+															return <>       <Unstable_Grid2 key={index} md={4} sm={6} xs={12} columnSpacing={2} spacing={2} >
 																<div className="min-mar">
 																	<FormControl fullWidth >
 																		<label>Home Location image -{index + 1}</label>
