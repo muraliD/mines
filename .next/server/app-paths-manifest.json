@@ -1,7 +1,5 @@
 {
-  "/not-found": "app/not-found.js",
-  "/pages/homeadmin/page": "app/pages/homeadmin/page.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/pages/home/page": "app/pages/home/page.js",
   "/pages/about/page": "app/pages/about/page.js",
-  "/pages/home/page": "app/pages/home/page.js"
+  "/pages/homeadmin/page": "app/pages/homeadmin/page.js"
 }

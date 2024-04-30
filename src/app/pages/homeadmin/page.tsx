@@ -250,6 +250,7 @@ export default function HomeAdminpage() {
 								formData.append("filecontent", item); //append the values with key, value pair
 								formData.append("file", "minesmedia");
 								formData.append("index", index);
+								formData.append("cat", "banners");
 								filesData.push(dispatch(uploadMatterFiles(formData)));
 
 								}
