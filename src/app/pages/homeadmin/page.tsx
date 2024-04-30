@@ -1,12 +1,13 @@
 "use client"
 import React, { useEffect, useState, useMemo } from 'react';
-import { AppDispatch,RootState } from '../../redux/store';
+import { AppDispatch, RootState } from '../../redux/store';
 
 import { useDispatch, useSelector } from "react-redux";
 
 import { uploadMatterFiles } from '../../redux/features/jobs/jobsSlice';
 
 import { Formik, Field, Form, ErrorMessage, FieldArray } from "formik";
+import { getDashBoardData ,updateDashBoardData} from '../../redux/features/jobs/jobsSlice';
 
 
 import '../../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
@@ -17,14 +18,13 @@ import { useRouter } from 'next/navigation'
 
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
-import dynamic from 'next/dynamic';
+
 import { CardActions, CardMedia, Grid, ListItem, Menu, MenuItem, TextareaAutosize, Unstable_Grid2 } from '@mui/material';
 import { Content } from 'next/font/google';
 //import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
+
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+
 //import Grid from '@mui/material/Grid'; // Grid version 1
 import Grid2 from '@mui/material/Unstable_Grid2'; // Grid version 2
 import Box from '@mui/material/Box';
@@ -39,41 +39,108 @@ import Stack from '@mui/material/Stack';
 //import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import 'react-tabs/style/react-tabs.css';
-
-//import { Tabs } from "@tarragon/swipeable-tabs";
-
-
-
-
-
-
-
-
-
-
-
 
 
 export default function HomeAdminpage() {
 	const dispatch = useDispatch<AppDispatch>();
+	const { dashBoardData,dashBoadLoading} = useSelector((state: RootState) => state.jobsReducer);
 	const changeTab = (selectedTab: any) => {
 	};
 	const router = useRouter()
 	const [windows, setwindows] = useState<any>(null);
 	const [open, setOpen] = React.useState(false);
+	const [initState, setInitState] = React.useState<any>(null);
 
 
 	const [expanded, setExpanded] = React.useState<string | false>(false);
 
 
 
+	useEffect(() => {
+		if (dashBoardData) {
+
+			console.log(dashBoardData)
+
+			 setInitState(dashBoardData.result[0])
+
+			// setInitState({
+			// 	"_id": "6624c696f5097d231ff14206",
+			// 	"banners": {
+			// 		"images": ["https://minesmedia.s3.ap-south-1.amazonaws.com/001s1TGY3gbvYj3gVpwC106kWa0pQNlodownload.jpg", "",""],
+			// 		"text1": "werr",
+			// 		"text2": "rrr",
+			// 		"text3": "rrrre",
+			// 		"text4": "fdd"
+			// 	},
+			// 	"title1": {
+			// 		"text1": "1",
+			// 		"text2": "12",
+			// 		"text3": "13",
+			// 		"content": "14"
+			// 	},
+			// 	"title2": {
+			// 		"text1": "2",
+			// 		"text2": "21",
+			// 		"text3": "22",
+			// 		"content": "23"
+			// 	},
+			// 	"productinfo": {
+			// 		"bannerimage": "",
+			// 		"products": [
+			// 			{
+			// 				"image": "",
+			// 				"title": "ffff",
+			// 				"content": "ddd"
+			// 			},
+			// 			{
+			// 				"image": "",
+			// 				"title": "rr",
+			// 				"content": "dd"
+			// 			},
+			// 			{
+			// 				"image": "",
+			// 				"title": "ss",
+			// 				"content": "d"
+			// 			}
+
+			// 		]
+			// 	},
+			// 	"title3": {
+			// 		"text1": "3",
+			// 		"text2": "31",
+			// 		"text3": "32",
+			// 		"content": "33"
+			// 	},
+			// 	"title4": {
+			// 		"text1": "4",
+			// 		"text2": "41",
+			// 		"text3": "42",
+			// 		"content": "43"
+			// 	},
+			// 	"locations": [
+			// 		{
+			// 			"image": "",
+			// 			"title": "loc",
+			// 			"content": "loccon"
+			// 		}
+			// 	],
+			// 	"partnerImages": [
+			// 		{
+			// 			"image": ""
+			// 		}
+			// 	],
+
+			// })
+			
+		}
+	}, [dashBoardData]);
 
 
 
 	useEffect(() => {
 		if (typeof window !== 'undefined') {
 			setwindows(window);
+			dispatch(getDashBoardData({}));
 			// window.$ = window.jQuery = $
 		}
 	}, [typeof window]);
@@ -85,83 +152,20 @@ export default function HomeAdminpage() {
 		[]
 	);
 
+	const submitFinalObject = (object)=>{
+
+	}
+
 
 	return (
 		<div className='main-container'>
-			{windows &&
+			{windows && initState &&
 				//id: `simple-tab-${index}`,
 				//'aria-controls': `simple-tabpanel-${index}`,
 
 
 				<Formik
-					initialValues={{
-						"_id": "6624c696f5097d231ff14206",
-						"banners": {
-							"images": ["", ""],
-							"text1": "werr",
-							"text2": "rrr",
-							"text3": "rrrre",
-							"text4": "fdd"
-						},
-						"title1": {
-							"text1": "1",
-							"text2": "12",
-							"text3": "13",
-							"content": "14"
-						},
-						"title2": {
-							"text1": "2",
-							"text2": "21",
-							"text3": "22",
-							"content": "23"
-						},
-						"productinfo": {
-							"bannerimage": "",
-							"products": [
-								{
-									"image": "",
-									"title": "ffff",
-									"content": "ddd"
-								},
-								{
-									"image": "",
-									"title": "rr",
-									"content": "dd"
-								},
-								{
-									"image": "",
-									"title": "ss",
-									"content": "d"
-								}
-
-							]
-						},
-						"title3": {
-							"text1": "3",
-							"text2": "31",
-							"text3": "32",
-							"content": "33"
-						},
-						"title4": {
-							"text1": "4",
-							"text2": "41",
-							"text3": "42",
-							"content": "43"
-						},
-						"locations": [
-							{
-								"image": "",
-								"title": "loc",
-								"content": "loccon"
-							}
-						],
-						"partnerImages": [
-							{
-								"image": ""
-							}
-						],
-
-					}}
+					initialValues={initState}
 					validationSchema={Yup.object({
 						banners: Yup.object().shape({
 
@@ -213,20 +217,101 @@ export default function HomeAdminpage() {
 						// 		content: Yup.string().required("content required"),
 						// 	})
 						// ),
-						partnerImages:Yup.array().of(
-								Yup.object().shape({
-									image: Yup.mixed()
+						partnerImages: Yup.array().of(
+							Yup.object().shape({
+								image: Yup.mixed()
 
-								})
-							)
-						
+							})
+						)
+
 
 					})}
-					onSubmit={(values) => {
+
+
+					
+					onSubmit={(values: any) => {
+						var mainObj = Object.assign(values);
 						alert(JSON.stringify(values, null, 2));
-						console.log("data====", values);
+
+						console.log(values.banners.images.length + "len")
+						console.log("data====", values.banners.images[0]);
+						console.log("data====", values.banners.images[1]);
+
+						var modifiedIndex:any = [];
+
+						if (values.banners.images.length > 0) {
+
+
+							var filesData:any = [];
+							values.banners.images.forEach((item,index) => {
+								if(item){
+								modifiedIndex.push(index)
+								var formData:any = new FormData(); //formdata object
+								formData.append("filecontent", item); //append the values with key, value pair
+								formData.append("file", "minesmedia");
+								formData.append("index", index);
+								filesData.push(dispatch(uploadMatterFiles(formData)));
+
+								}
+								
+
+							});
 
 						
+						console.log(modifiedIndex);
+							Promise.all(filesData)
+							.then((values) => {
+
+
+								if(values.length>0){
+									
+									values.forEach((item,index) => {
+
+										debugger
+										var success = item.payload.data.sucess
+										if(success){
+											var indexe = 	item.payload.data.index
+									    var image = 	item.payload.data.message;
+										mainObj.banners.images[parseInt(indexe)] = image;
+
+										}
+
+										
+
+									})
+
+
+								}
+								console.log(mainObj)
+								dispatch(updateDashBoardData(mainObj));
+							
+
+							})
+							.catch((error) => {
+								console.log(error)
+
+							});
+						
+						}else{
+
+							console.log(mainObj)
+							dispatch(updateDashBoardData(mainObj));
+
+						}
+						
+
+
+
+
+
+
+
+
+						
+
+
+
+
 					}}
 					render={({ values, touched, errors, handleChange, handleBlur, isValid, setFieldValue, handleReset, setErrors }) => (
 						<Form>
@@ -316,17 +401,29 @@ export default function HomeAdminpage() {
 															{filespath && filespath.length > 0 && filespath.map((user, index) => {
 																return <FormControl fullWidth key={index}>
 
-																	<TextField
+																	<input
+																	style={{padding:"30px"}}
 
 																		type="file"
 																		key={index}
 
 																		name={`banners.images.${index}`}
-																		value={values.banners["images"][index] || ""}
-																		onChange={(v) => {
+																		// value={values.banners["images"][index] || ""}
+																		onChange={(v: any) => {
+
+																			debugger
+
+																			var file: any = v.target.files;
+
+																			if (file) {
+
+																			}
 
 
-																			setFieldValue(`banners.images.${index}`, v.target.value)
+																			setFieldValue(`banners.images.${index}`, v.target.files[0])
+
+
+
 																		}}
 
 
@@ -536,13 +633,19 @@ export default function HomeAdminpage() {
 									<div className="admin-title" bot-mar><h3>Banner and products Content</h3></div>
 									<Unstable_Grid2 container spacing={2} rowSpacing={2} columnSpacing={4} className="bot-mar box">
 										<Unstable_Grid2 md={4} sm={6} xs={12} columnSpacing={2} spacing={2}>
-											<FormControl fullWidth ><label>Home Products Banner Image</label><TextField type="file"
+											<FormControl fullWidth ><label>Home Products Banner Image</label>
+											
+											
+											
+											<input 
+											type="file"
 												name={`productinfo.bannerimage`}
-												value={values.productinfo["bannerimage"] || ""}
-												onChange={(v) => {
+												// value={values.productinfo["bannerimage"] || ""}
+												onChange={(v:any) => {
+
+												setFieldValue(`productinfo.bannerimage`, v.target.files[0])
 
 
-													setFieldValue(`productinfo.bannerimage`, v.target.value)
 												}}
 
 
@@ -775,28 +878,28 @@ export default function HomeAdminpage() {
 															</Unstable_Grid2>
 																<Unstable_Grid2 md={4} sm={6} xs={12} columnSpacing={2} spacing={2} className="min-mar">
 																	<label>&nbsp;</label>
-																	<FormControl fullWidth><TextField id="outlined-basic" label="Home Location image title-1" variant="outlined" 
-																	name={`locations.${index}.title`}
-																	value={values.locations[index].title || ""}
-																	onChange={(v) => {
+																	<FormControl fullWidth><TextField id="outlined-basic" label="Home Location image title-1" variant="outlined"
+																		name={`locations.${index}.title`}
+																		value={values.locations[index].title || ""}
+																		onChange={(v) => {
 
 
-																		setFieldValue(`locations.images.${index}.title`, v.target.value)
-																	}}
-																	
+																			setFieldValue(`locations.images.${index}.title`, v.target.value)
+																		}}
+
 																	/></FormControl>
 																</Unstable_Grid2>
 																<Unstable_Grid2 md={4} sm={6} xs={12} columnSpacing={2} spacing={2} className="min-mar">
 																	<label>&nbsp;</label>
-																	<FormControl fullWidth><TextField id="outlined-basic" label="Home Location image title-2" variant="outlined" 
-																	name={`locations.${index}.content`}
-																	value={values.locations[index].content || ""}
-																	onChange={(v) => {
+																	<FormControl fullWidth><TextField id="outlined-basic" label="Home Location image title-2" variant="outlined"
+																		name={`locations.${index}.content`}
+																		value={values.locations[index].content || ""}
+																		onChange={(v) => {
 
 
-																		setFieldValue(`locations.images.${index}.content`, v.target.value)
-																	}}
-																	
+																			setFieldValue(`locations.images.${index}.content`, v.target.value)
+																		}}
+
 																	/></FormControl>
 																</Unstable_Grid2> </>
 
@@ -816,7 +919,7 @@ export default function HomeAdminpage() {
 
 
 
-										
+
 
 
 
@@ -889,20 +992,20 @@ export default function HomeAdminpage() {
 
 
 
-										<FieldArray
+											<FieldArray
 												name={`partnerImages`}
 												render={(arrayHelpers) => {
 													const filespath = values.partnerImages;
 													return (
 														<div>
 															{filespath && filespath.length > 0 && filespath.map((user, index) => {
-																
-																
-																
-																
-																
-																
-																
+
+
+
+
+
+
+
 																return <FormControl fullWidth key={index}>
 
 																	<TextField
@@ -910,7 +1013,7 @@ export default function HomeAdminpage() {
 																		type="file"
 
 																		name={`partnerImages.${index}.image`}
-																		value={values.partnerImages[index] .image|| ""}
+																		value={values.partnerImages[index].image || ""}
 																		onChange={(v) => {
 
 
@@ -936,7 +1039,7 @@ export default function HomeAdminpage() {
 
 
 
-											
+
 
 											{/* <label>&nbsp;</label>
 											<FormControl fullWidth >
